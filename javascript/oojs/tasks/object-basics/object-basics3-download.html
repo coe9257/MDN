@@ -31,9 +31,21 @@
       breed : 'Cymric',
       color : 'white',
       greeting: function() {
-        console.log('Meow!');
+        console.log(`Hello, said ${this.name} the ${this.breed}.`);
       }
     }
+
+    let cat2 = {
+      name : `Beatrice`,
+      breed : `ragDoll`,
+      color : `SnowWhite`,
+      greeting: function() {
+        console.log(`Hello, said ${this.name} the ${this.breed}.`)
+      }
+    }
+
+    console.log(cat.greeting());
+    console.log(cat2.greeting());
   </script>
 
 </html>
