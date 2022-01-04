@@ -26,7 +26,27 @@
 
   </body>
   <script>
+      class Shape {
+          constructor(name, sides, sideLength) {
+            this.name = name;
+            this.sides = sides;
+            this.sideLength = sideLength;
+            this.calcPerimeter = function () {
+              console.log(sides * sideLength);
+            }
+          }
+      }
 
+      let square = new Shape("Square", 4, 5);
+
+      square.calcArea = function() {
+        console.log(this.sideLength * this.sideLength)
+      }
+
+      console.log(square)
+
+      console.log(square.calcArea() )
+       
   </script>
 
 </html>

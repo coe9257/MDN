@@ -26,55 +26,77 @@
 
   </body>
   <script>
+
+   //Warmup Exercise
+//    function Person(first, last, age, gender, interests) {
+//   this.name = {
+//      first : first,
+//      last : last
+//   };
+//   this.age = age;
+//   this.gender = gender;
+//   this.interests = interests;
+//   this.bio = function(interests) {
+//     let bioSex = this.gender;
+//     let hobbies = this.interests;
+//     let pronoun = "";
+//       if (bioSex == "male") {
+//         pronoun = "he"
+//       }else if (bioSex == "female") {
+//         pronoun = "she"
+//       }
+//       function hobbiesLoop() {
+//         let string = "";
+//         for (i = 0; i < hobbies.length; i++) {
+//           console.log(hobbies[i]);
+//             if (i == 0){
+//               string += `${hobbies[i]} `;
+//             }
+//             else if (i < hobbies.length - 1) {
+//               string += `, ${hobbies[i]} `;
+//             }
+//             else if (i == hobbies.length - 1) {
+//               string += `and ${hobbies[i]}.`
+//             }
+//         }
+//         return string;
+//       }
+//     alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ' + `${pronoun} ` + 'likes ' + `${hobbiesLoop()}.`);
+//   };
+//   this.greeting = function() {
+//     alert('Hi! I\'m ' + this.name.first + '.');
+//   };
+// }
+
+//     let staffMember = new Person("Jane", "Wilde", 35, "female", ["skiing", "snowboarding", "MMA", "Hunting", "Fishing"]);
+//       console.log(staffMember.bio());
+
+  // Write Code Below
+
+
     function Shape(name, sides, sideLength) {
       this.name = name;
       this.sides = sides;
       this.sideLength = sideLength;
+      this.calcPerimeter = function () {
+          console.log(sides * sideLength);
+        }
     }
 
-    // Write your code below here
-function Person(first, last, age, gender, interests) {
-  this.name = {
-     first : first,
-     last : last
-  };
-  this.age = age;
-  this.gender = gender;
-  this.interests = interests;
-  this.bio = function(interests) {
-    let bioSex = this.gender;
-    let hobbies = this.interests;
-    let pronoun = "";
-      if (bioSex == "male") {
-        pronoun = "he"
-      }else if (bioSex == "female") {
-        pronoun = "she"
-      }
-      function hobbiesLoop() {
-        let string = "";
-        for (i = 0; i < hobbies.length; i++) {
-          console.log(hobbies[i]);
-            if (i == 0){
-              string += `${hobbies[i]} `;
-            }
-            else if (i < hobbies.length - 1) {
-              string += `, ${hobbies[i]} `;
-            }
-            else if (i == hobbies.length - 1) {
-              string += `and ${hobbies[i]}.`
-            }
-        }
-        return string;
-      }
-    alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ' + `${pronoun} ` + 'likes ' + `${hobbiesLoop()}.`);
-  };
-  this.greeting = function() {
-    alert('Hi! I\'m ' + this.name.first + '.');
-  };
-}
+    const makeShape = new Shape("square", 4, 4);
+    
+    console.log(makeShape.calcPerimeter());
 
-let staffMember = new Person("Jane", "Wilde", 35, "female", ["skiing", "snowboarding", "MMA", "Hunting", "Fishing"]);
-  console.log(staffMember.bio());
+    const square = new Shape("Square", 4, 5);
+      console.log(square.calcPerimeter());
+
+    const triangle = new Shape("Triangle", 3, 3);
+      console.log(triangle.calcPerimeter());
+
+    // Write your code below here
+
+
+
 
 
   </script>
