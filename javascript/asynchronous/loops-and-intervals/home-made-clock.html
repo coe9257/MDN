@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Williams Clock</title>
+    <link rel="icon" type="image/png" href="#">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 20rem;
+            width: 100%;
+        }
+
+        #clock-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 7.5rem;
+            width: 27.5rem;
+            background-color: rgb(11, 12, 12);
+        }
+
+        .stop-start-container {
+            width: 100%;
+            height: 42.5%;
+            display: flex;
+            justify-content:space-evenly;
+            align-items: center;
+        }
+
+        .start,
+        .stop {
+            color: black;
+            background-color: rgb(255, 255, 255);
+            height: 2.5rem;
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clock-reset {
+            color: black;
+            height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 85%;
+            height: 42.5%;
+            background-color: rgb(240, 235, 235);
+        }
+
+        #clock {
+            width: 27.5rem;
+            height: 7.5rem;
+            background-color:  rgb(17, 13, 13);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #am-pm,
+        #hour,
+        #minute,
+        #second {
+            width: 5rem;
+            height: 6rem;
+            background-color: white;
+            margin: 0 .5rem 0 .5rem;
+            font-size: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #am-pm {
+            font-size: 2.5rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="clock-box">
+        <div class="stop-start-container">
+            <p class="start">START</p> <p class="stop">STOP</p>
+        </div>
+        <div class="clock-reset">RESET</div>
+    </div>
+    <div id="clock">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+        <div id="am-pm"></div>
+    </div>
+    <script>
+
+        let timeInterval;
+
+        function intervalControl(on, off) {
+            if (on == true && off != true) {
+                timeInterval = setInterval(clock, 1000)
+            }else if (on != true && off == true) {
+                console.log('else if firing: ', `on is: `, on, `off is: `, off);
+                clearInterval(timeInterval);
+                timeInterval = null;
+            }
+        }
+
+        function clock() {
+                const time = new Date();
+
+                let am_pm = "";
+
+                let hour = time.toLocaleString('en-US',{ 
+                    hour: '2-digit', 
+                    hour12: true,
+                    });
+
+                function storeAM_PM() {
+                    if (hour.includes("AM")) {
+                        am_pm = "AM";
+                    }else {
+                        am_pm = "PM";
+                    }
+                }
+                storeAM_PM()
+
+                hour = hour.replaceAll('AM', "");
+                hour = hour.replaceAll('PM', "")
+                    
+                const minute = time.toLocaleString('en-US',{ 
+                    minute: "2-digit"
+                    })
+
+                const second = time.toLocaleString('en-US',{ 
+                    second: "2-digit"
+                    })
+
+                function addTimeToUI() {
+                    const time_am_pm = document.getElementById("am-pm");
+                    const hoursUI = document.getElementById('hour');
+                    const minuteUI = document.getElementById('minute');
+                    const secondUI = document.getElementById('second');
+
+                        time_am_pm.textContent = am_pm;
+                        hoursUI.textContent = hour;
+                        minuteUI.textContent = minute;
+                        secondUI.textContent = second;
+
+                }
+                addTimeToUI()
+        }
+
+        document.querySelector('.start').addEventListener("click", function() {
+            intervalControl(true, false)
+        });
+
+        document.querySelector('.stop').addEventListener("click", function() {
+            intervalControl(false, true)
+            console.log('event stop firing')
+        });
+
+        document.querySelector('.clock-reset').addEventListener("click", function() {
+            intervalControl(false, true)
+            
+            function resetTimeToZeroes() {
+                const hourContainer = document.querySelector('#hour');
+                const minuteContainer = document.querySelector('#minute');
+                const secondContainer = document.querySelector('#second');
+                const am_pm_Container = document.querySelector('#am-pm');
+                    hourContainer.textContent = "00";
+                    minuteContainer.textContent = "00";
+                    secondContainer.textContent = "00";
+                    am_pm_Container.textContent = "";
+            }
+            resetTimeToZeroes();
+        })
+
+    </script>
+</body>
+</html>
